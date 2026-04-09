@@ -31,3 +31,9 @@ Icon?
 bin/
 build/
 dist/
+
+# --- Local Gemini CLI Config ---
+GEMINI.md
+
+# --- GitHub Configuration ---
+.github/copilot-instructions.md

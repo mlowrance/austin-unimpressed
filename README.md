@@ -14,3 +14,16 @@ Austin is on a quest for retirement. To get there, he must walk through a series
 ## Controls
 - **Space Bar:** Start Game / Continue
 - **Right Arrow:** Walk toward retirement
+
+
+## Source Structure
+
+.
+├── src/            # C source files (*.c)
+├── include/        # Header files (*.h)
+├── assets/         # Sprite data converted to C headers
+├── tools/          # Scripts for asset conversion
+├── bin/            # Compiled .EXE output (git ignored)
+├── PLAN.md         # Task tracking for Gemini CLI
+├── DEVELOPMENT.md  # Build and environment instructions
+└── .gitignore      # Build artifact exclusion
