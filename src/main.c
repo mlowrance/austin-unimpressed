@@ -5,10 +5,14 @@
 
 /* Assets */
 #include "assets/palette.h"
-#include "assets/AUSTIN_N.H"
+#include "assets/austin_n.h"
 #include "assets/austin_unimpressed.h"
 #include "assets/austin_awooga.h"
 #include "assets/retirement_bar.h"
+#include "assets/boss_chicken.h"
+#include "assets/boss_pr.h"
+#include "assets/money.h"
+#include "assets/house.h"
 
 typedef enum {
     STATE_TITLE,
@@ -44,7 +48,7 @@ int main(void) {
     austin.height = AUSTIN_N_HEIGHT;
     austin.sprite = austin_n;
 
-    printf("Austin Unimpressed - Phase 4\n");
+    printf("Austin Unimpressed - Phase 5 Final Prototype\n");
     printf("SPACE: Start/Continue, RIGHT: Walk, ESC: Quit\n");
     getch();
 
@@ -57,13 +61,12 @@ int main(void) {
     set_palette(austin_palette);
 
     while (running) {
-        /* 1. Input */
         if (kbhit()) {
             int key = getch();
-            if (key == 0) { /* Extended key */
+            if (key == 0) {
                 key = getch();
                 if (key == KEY_RIGHT && current_state == STATE_WALKING) {
-                    austin.x += 5;
+                    austin.x += 8;
                 }
             } else if (key == KEY_ESC) {
                 running = 0;
@@ -77,33 +80,30 @@ int main(void) {
                     if (retirement_count >= RETIREMENT_GOAL) {
                         current_state = STATE_END;
                     }
+                } else if (current_state == STATE_END) {
+                    running = 0; /* Quit after winning */
                 }
             }
         }
 
-        /* 2. Logic */
         if (current_state == STATE_WALKING) {
             if (austin.x >= BOSS_X_TRIGGER) {
                 current_state = STATE_UNIMPRESSED;
             }
         }
 
-        /* 3. Rendering */
         clear_vga_buffer(0);
 
-        /* Always draw UI if not in Title/End */
+        /* UI Rendering */
         if (current_state == STATE_WALKING || current_state == STATE_UNIMPRESSED) {
-            /* Draw retirement bar background */
-            draw_sprite(110, 10, RETIREMENT_BAR_WIDTH, RETIREMENT_BAR_HEIGHT, retirement_bar);
-            
-            /* Fill retirement bar based on progress */
+            draw_sprite(110, 5, RETIREMENT_BAR_WIDTH, RETIREMENT_BAR_HEIGHT, retirement_bar);
             {
                 int i;
                 int fill_w = (retirement_count * (RETIREMENT_BAR_WIDTH - 2)) / RETIREMENT_GOAL;
                 for (i = 0; i < fill_w; i++) {
                     int iy;
                     for (iy = 0; iy < 10; iy++) {
-                        put_pixel(111 + i, 15 + iy, 10); /* Green fill inside bar */
+                        put_pixel(111 + i, 10 + iy, 10);
                     }
                 }
             }
@@ -111,22 +111,45 @@ int main(void) {
 
         switch (current_state) {
             case STATE_TITLE:
-                /* Draw normal austin as title placeholder */
                 draw_sprite(144, 68, AUSTIN_N_WIDTH, AUSTIN_N_HEIGHT, austin_n);
+                /* Draw some "Logo" pixels */
+                put_pixel(160, 50, 14); put_pixel(161, 50, 14);
                 break;
 
             case STATE_WALKING:
+                /* Draw Ground */
+                {
+                    int gx;
+                    for (gx = 0; gx < 320; gx++) put_pixel(gx, 164, 7);
+                }
                 draw_sprite(austin.x, austin.y, austin.width, austin.height, austin.sprite);
                 break;
 
             case STATE_UNIMPRESSED:
-                /* Switch to unimpressed sprite */
+                /* Draw Boss based on progress */
+                if (retirement_count == 0) {
+                    draw_sprite(220, 100, BOSS_CHICKEN_WIDTH, BOSS_CHICKEN_HEIGHT, boss_chicken);
+                } else {
+                    draw_sprite(220, 100, BOSS_PR_WIDTH, BOSS_PR_HEIGHT, boss_pr);
+                }
+                
                 draw_sprite(austin.x, austin.y, AUSTIN_UNIMPRESSED_WIDTH, AUSTIN_UNIMPRESSED_HEIGHT, austin_unimpressed);
+                
+                /* Simple Speech Bubble Placeholder */
+                {
+                    int bx, by;
+                    for (by = 80; by < 95; by++) {
+                        for (bx = 20; bx < 100; bx++) put_pixel(bx, by, 15);
+                    }
+                }
                 break;
 
             case STATE_END:
-                /* Draw Awooga for end state */
-                draw_sprite(144, 68, AUSTIN_AWOOGA_WIDTH, AUSTIN_AWOOGA_HEIGHT, austin_awooga);
+                /* Win sequence: Money and House */
+                draw_sprite(100, 130, MONEY_WIDTH, MONEY_HEIGHT, money);
+                draw_sprite(180, 130, MONEY_WIDTH, MONEY_HEIGHT, money);
+                draw_sprite(128, 40, HOUSE_WIDTH, HOUSE_HEIGHT, house);
+                draw_sprite(144, 100, AUSTIN_AWOOGA_WIDTH, AUSTIN_AWOOGA_HEIGHT, austin_awooga);
                 break;
         }
 

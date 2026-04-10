@@ -20,12 +20,12 @@ This document serves as the roadmap for the Gemini CLI and development team.
 - [x] **Task 3.2:** (Updated): Implement a delay() or sync_to_vblank() function to prevent the game from running too fast on high-end Pentium hardware.
 
 ## Phase 4: Gameplay & UI
-- [ ] **Task 4.1:** Define an `Actor` struct to track Austin's X/Y position and current animation frame.
-- [ ] **Task 4.2:** Implement the "Retirement Bar" UI at the top of the screen (fills in $1/3$ increments).
-- [ ] **Task 4.3:** Set Boss Encounter triggers at specific X-coordinates.
-- [ ] **Task 4.4:** Implement the "Speech Bubble" logic for the "Unimpressed" state.
+- [x] **Task 4.1:** Define an `Actor` struct to track Austin's X/Y position and current animation frame.
+- [x] **Task 4.2:** Implement the "Retirement Bar" UI at the top of the screen (fills in $1/3$ increments).
+- [x] **Task 4.3:** Set Boss Encounter triggers at specific X-coordinates.
+- [x] **Task 4.4:** Implement the "Speech Bubble" logic for the "Unimpressed" state.
 
 ## Phase 5: Asset Integration & End Game
-- [ ] **Task 5.1:** Integrate header-based sprite data for Austin (Normal, Unimpressed, and Awooga states).
-- [ ] **Task 5.2:** Integrate Boss sprites (Chicken Strips, Massive PR, TBD).
-- [ ] **Task 5.3:** Code the "End Game" sequence: Retirement money appears -> House falls from sky -> Game Over.
+- [x] **Task 5.1:** Integrate header-based sprite data for Austin (Normal, Unimpressed, and Awooga states).
+- [x] **Task 5.2:** Integrate Boss sprites (Chicken Strips, Massive PR, TBD).
+- [x] **Task 5.3:** Code the "End Game" sequence: Retirement money appears -> House falls from sky -> Game Over.
