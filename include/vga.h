@@ -20,6 +20,7 @@ int init_vga_buffer(void);
 void free_vga_buffer(void);
 void clear_vga_buffer(unsigned char color);
 void flip_vga_buffer(void);
+void wait_for_vsync(void);
 
 /* Drawing functions */
 void set_video_mode(unsigned char mode);

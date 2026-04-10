@@ -1,6 +1,7 @@
 #include "vga.h"
 #include <dos.h>
 #include <malloc.h>
+#include <conio.h>
 
 /* Pointer to the start of video memory */
 unsigned char __far *video_mem = (unsigned char __far *)VGA_VIDEO_MEMORY;
@@ -16,6 +17,14 @@ void set_video_mode(unsigned char mode) {
 
 void exit_video_mode(void) {
     set_video_mode(MODE_TEXT);
+}
+
+void set_palette(const unsigned char *palette_data) {
+    int i;
+    outp(0x03C8, 0); /* Start at color 0 */
+    for (i = 0; i < 256 * 3; i++) {
+        outp(0x03C9, palette_data[i]);
+    }
 }
 
 int init_vga_buffer(void) {
@@ -44,6 +53,13 @@ void flip_vga_buffer(void) {
     if (back_buffer != NULL) {
         _fmemcpy(video_mem, back_buffer, VGA_SCREEN_SIZE);
     }
+}
+
+void wait_for_vsync(void) {
+    /* Wait until any current vertical retrace finishes */
+    while (inp(0x03DA) & 0x08);
+    /* Wait for the next vertical retrace to start */
+    while (!(inp(0x03DA) & 0x08));
 }
 
 void put_pixel(int x, int y, unsigned char color) {

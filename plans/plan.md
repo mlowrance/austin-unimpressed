@@ -15,9 +15,9 @@ This document serves as the roadmap for the Gemini CLI and development team.
 - [x] **Task 2.4:** Implement a `clear_buffer()` function to reset the frame.
 
 ## Phase 3: State Machine & Input
-- [ ] **Task 3.1:** Setup a game loop with a state machine: `STATE_TITLE`, `STATE_WALKING`, `STATE_UNIMPRESSED`, `STATE_END`.
-- [ ] **Task 3.2:** Implement non-blocking keyboard input for Space Bar (continue) and Right Arrow (walk).
-- [ ] **Task 3.2:** (Updated): Implement a delay() or sync_to_vblank() function to prevent the game from running too fast on high-end Pentium hardware.
+- [x] **Task 3.1:** Setup a game loop with a state machine: `STATE_TITLE`, `STATE_WALKING`, `STATE_UNIMPRESSED`, `STATE_END`.
+- [x] **Task 3.2:** Implement non-blocking keyboard input for Space Bar (continue) and Right Arrow (walk).
+- [x] **Task 3.2:** (Updated): Implement a delay() or sync_to_vblank() function to prevent the game from running too fast on high-end Pentium hardware.
 
 ## Phase 4: Gameplay & UI
 - [ ] **Task 4.1:** Define an `Actor` struct to track Austin's X/Y position and current animation frame.
