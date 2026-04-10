@@ -21,9 +21,13 @@ Austin is on a quest for retirement. To get there, he must walk through a series
 .
 ├── src/            # C source files (*.c)
 ├── include/        # Header files (*.h)
-├── assets/         # Sprite data converted to C headers
-├── tools/          # Scripts for asset conversion
-├── bin/            # Compiled .EXE output (git ignored)
-├── PLAN.md         # Task tracking for Gemini CLI
-├── DEVELOPMENT.md  # Build and environment instructions
+├── assets/         # Sprite headers and palette data
+├── tools/          # Scripts for asset conversion and sprite processing
+├── plans/          # Development roadmap and planning notes
+├── .github/        # GitHub metadata and project guidance
+├── bin/            # Compiled `.EXE` output (git ignored)
+├── Makefile        # Build and run targets
+├── DEVELOPMENT.md  # Build/environment instructions
+├── GEMINI.md       # AI agent and project guidance
+├── README.md       # Project overview and docs
 └── .gitignore      # Build artifact exclusion
