@@ -35,5 +35,8 @@ dist/
 # --- Local Gemini CLI Config ---
 GEMINI.md
 
+# --- Assets ---
+*.jpg
+
 # --- GitHub Configuration ---
 .github/copilot-instructions.md

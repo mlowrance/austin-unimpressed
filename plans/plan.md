@@ -3,10 +3,10 @@
 This document serves as the roadmap for the Gemini CLI and development team.
 
 ## Phase 1: Boilerplate & VGA Initialization
-- [ ] **Task 1.1:** Create `src/main.c` with a basic DOS entry point.
-- [ ] **Task 1.2:** Implement `set_video_mode(unsigned char mode)` to switch to `0x13` (VGA 320x200).
-- [ ] **Task 1.3:** Implement `exit_video_mode()` to return to text mode (0x03) on program exit.
-- [ ] **Task 1.4:** Create a `put_pixel(int x, int y, unsigned char color)` function.
+- [x] **Task 1.1:** Create `src/main.c` with a basic DOS entry point.
+- [x] **Task 1.2:** Implement `set_video_mode(unsigned char mode)` to switch to `0x13` (VGA 320x200).
+- [x] **Task 1.3:** Implement `exit_video_mode()` to return to text mode (0x03) on program exit.
+- [x] **Task 1.4:** Create a `put_pixel(int x, int y, unsigned char color)` function.
 
 ## Phase 2: Double Buffering & Graphics Engine
 - [ ] **Task 2.1:** Allocate a 64,000-byte buffer (`unsigned char *screen_buffer`) for double buffering.
