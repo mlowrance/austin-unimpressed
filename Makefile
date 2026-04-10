@@ -30,8 +30,8 @@ hardware:
 	$(MAKE) build
 
 sd-card: build
-	@echo "TODO: Copy $(TARGET) to SD card..."
-	# cp $(TARGET) /Volumes/SD_CARD/
+	@echo "Copying $(TARGET) to SD card..."
+	cp $(TARGET) /Volumes/DOS622/austin/AUSTIN.EXE
 
 ftp: build
 	@echo "TODO: Push $(TARGET) via FTP..."
