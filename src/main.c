@@ -1,46 +1,15 @@
 #include <stdio.h>
 #include <conio.h>
-#include <stdlib.h>
 #include "vga.h"
 
-typedef enum {
-    STATE_TITLE,
-    STATE_WALKING,
-    STATE_UNIMPRESSED,
-    STATE_END
-} GameState;
-
-/* Non-blocking key codes */
-#define KEY_ESC   27
-#define KEY_SPACE 32
-#define KEY_RIGHT 77
-
-/* Helper to draw a solid block */
-void draw_rect(int x, int y, int w, int h, unsigned char color) {
-    int ix, iy;
-    for (iy = 0; iy < h; iy++) {
-        for (ix = 0; ix < w; ix++) {
-            put_pixel(x + ix, y + iy, color);
-        }
-    }
-}
+#include "assets/palette.h"
+#include "assets/AUSTIN_N.H"
+#include "assets/austin_unimpressed.h"
+#include "assets/austin_awooga.h"
 
 int main(void) {
-    GameState current_state = STATE_TITLE;
-    int running = 1;
-    int austin_x = 20;
-    int austin_y = 100;
-
-    unsigned char test_sprite[] = {
-        0, 15, 15, 0,
-        15, 10, 10, 15,
-        15, 10, 10, 15,
-        0, 15, 15, 0
-    };
-
-    printf("Austin Unimpressed - Debug Build\n");
-    printf("SPACE: Start/Continue, RIGHT: Walk, ESC: Quit\n");
-    printf("Initializing...\n");
+    printf("Displaying new Austin sprites for verification...\n");
+    printf("Press any key to start.\n");
     getch();
 
     if (!init_vga_buffer()) {
@@ -49,62 +18,25 @@ int main(void) {
     }
 
     set_video_mode(MODE_VGA_13H);
+    set_palette(austin_palette);
 
-    while (running) {
-        if (kbhit()) {
-            int key = getch();
-            if (key == 0) { /* Extended key prefix */
-                key = getch();
-                if (key == KEY_RIGHT && current_state == STATE_WALKING) {
-                    austin_x += 10;
-                }
-            } else if (key == KEY_ESC) {
-                running = 0;
-            } else if (key == KEY_SPACE) {
-                if (current_state == STATE_TITLE) {
-                    current_state = STATE_WALKING;
-                } else if (current_state == STATE_UNIMPRESSED) {
-                    current_state = STATE_WALKING;
-                    austin_x = 20; /* Reset position */
-                }
-            }
-        }
+    clear_vga_buffer(0);
 
-        if (current_state == STATE_WALKING) {
-            if (austin_x > 280) {
-                current_state = STATE_UNIMPRESSED;
-            }
-        }
+    /* Draw Normal Austin (Left) - using new AUSTIN_N.H */
+    draw_sprite(40, 68, AUSTIN_N_WIDTH, AUSTIN_N_HEIGHT, austin_n);
 
-        /* Clear to a dark blue background to show the buffer is active */
-        clear_vga_buffer(1); 
+    /* Draw Unimpressed Austin (Middle) */
+    draw_sprite(144, 68, AUSTIN_UNIMPRESSED_WIDTH, AUSTIN_UNIMPRESSED_HEIGHT, austin_unimpressed);
 
-        switch (current_state) {
-            case STATE_TITLE:
-                /* Big Yellow Box for Title */
-                draw_rect(110, 80, 100, 40, 14);
-                break;
+    /* Draw Awooga Austin (Right) */
+    draw_sprite(248, 68, AUSTIN_AWOOGA_WIDTH, AUSTIN_AWOOGA_HEIGHT, austin_awooga);
 
-            case STATE_WALKING:
-                /* Draw a "ground" line */
-                draw_rect(0, 120, 320, 2, 7);
-                draw_sprite(austin_x, austin_y, 4, 4, test_sprite);
-                break;
+    flip_vga_buffer();
 
-            case STATE_UNIMPRESSED:
-                /* Big Red Box for Unimpressed */
-                draw_rect(110, 80, 100, 40, 12);
-                break;
-
-            case STATE_END:
-                break;
-        }
-
-        wait_for_vsync();
-        flip_vga_buffer();
-    }
+    getch();
 
     exit_video_mode();
     free_vga_buffer();
+
     return 0;
 }

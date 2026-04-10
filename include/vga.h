@@ -25,6 +25,7 @@ void wait_for_vsync(void);
 /* Drawing functions */
 void set_video_mode(unsigned char mode);
 void exit_video_mode(void);
+void set_palette(const unsigned char *palette_data);
 void put_pixel(int x, int y, unsigned char color);
 void draw_sprite(int x, int y, int width, int height, const unsigned char *sprite_data);
 

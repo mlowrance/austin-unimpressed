@@ -37,6 +37,8 @@ GEMINI.md
 
 # --- Assets ---
 *.jpg
+*.jpeg
+*.png
 
 # --- GitHub Configuration ---
 .github/copilot-instructions.md
