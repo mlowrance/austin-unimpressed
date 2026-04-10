@@ -5,7 +5,7 @@
 
 /* Assets */
 #include "assets/palette.h"
-#include "assets/austin_n.h"
+#include "assets/A_NORM.H"
 #include "assets/austin_unimpressed.h"
 #include "assets/austin_awooga.h"
 #include "assets/retirement_bar.h"
@@ -43,10 +43,10 @@ int main(void) {
     
     Actor austin;
     austin.x = 20;
-    austin.y = 100;
-    austin.width = AUSTIN_N_WIDTH;
-    austin.height = AUSTIN_N_HEIGHT;
-    austin.sprite = austin_n;
+    austin.y = 50; /* Adjusted for taller sprite */
+    austin.width = A_NORM_WIDTH;
+    austin.height = A_NORM_HEIGHT;
+    austin.sprite = a_norm;
 
     printf("Austin Unimpressed - Phase 5 Final Prototype\n");
     printf("SPACE: Start/Continue, RIGHT: Walk, ESC: Quit\n");
@@ -111,9 +111,9 @@ int main(void) {
 
         switch (current_state) {
             case STATE_TITLE:
-                draw_sprite(144, 68, AUSTIN_N_WIDTH, AUSTIN_N_HEIGHT, austin_n);
+                draw_sprite(128, 40, A_NORM_WIDTH, A_NORM_HEIGHT, a_norm);
                 /* Draw some "Logo" pixels */
-                put_pixel(160, 50, 14); put_pixel(161, 50, 14);
+                put_pixel(160, 20, 14); put_pixel(161, 20, 14);
                 break;
 
             case STATE_WALKING:
