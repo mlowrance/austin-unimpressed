@@ -2,7 +2,7 @@
 # Targets: DOS Real Mode
 
 CC = wcl
-CFLAGS = -bt=dos -0 -ms -zq -i=include
+CFLAGS = -bt=dos -0 -ml -zq -i=include
 LDFLAGS = 
 OBJ_DIR = bin
 SRC_DIR = src
@@ -22,7 +22,7 @@ $(TARGET): $(SRCS)
 	$(CC) $(CFLAGS) -fe=$(TARGET) $(SRCS)
 
 run: build
-	dosbox-x -c "mount c $(CURDIR)/bin" -c "c:" -c "AUSTIN.EXE" -c "exit"
+	dosbox-x -c "mount c $(CURDIR)/bin" -c "c:" -c "AUSTIN.EXE"
 
 # Stub targets for future needs
 hardware:

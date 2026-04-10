@@ -9,10 +9,10 @@ This document serves as the roadmap for the Gemini CLI and development team.
 - [x] **Task 1.4:** Create a `put_pixel(int x, int y, unsigned char color)` function.
 
 ## Phase 2: Double Buffering & Graphics Engine
-- [ ] **Task 2.1:** Allocate a 64,000-byte buffer (`unsigned char *screen_buffer`) for double buffering.
-- [ ] **Task 2.2:** Implement a `flip_buffer()` function using `memcpy` to copy the buffer to video memory at `0xA0000`.
-- [ ] **Task 2.3:** Implement a basic sprite drawing function that supports transparency (skip drawing for color 0).
-- [ ] **Task 2.4:** Implement a `clear_buffer()` function to reset the frame.
+- [x] **Task 2.1:** Allocate a 64,000-byte buffer (`unsigned char *screen_buffer`) for double buffering.
+- [x] **Task 2.2:** Implement a `flip_buffer()` function using `memcpy` to copy the buffer to video memory at `0xA0000`.
+- [x] **Task 2.3:** Implement a basic sprite drawing function that supports transparency (skip drawing for color 0).
+- [x] **Task 2.4:** Implement a `clear_buffer()` function to reset the frame.
 
 ## Phase 3: State Machine & Input
 - [ ] **Task 3.1:** Setup a game loop with a state machine: `STATE_TITLE`, `STATE_WALKING`, `STATE_UNIMPRESSED`, `STATE_END`.
