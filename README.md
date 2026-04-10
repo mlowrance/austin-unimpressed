@@ -18,6 +18,7 @@ Austin is on a quest for retirement. To get there, he must walk through a series
 
 ## Source Structure
 
+```text
 .
 ├── src/            # C source files (*.c)
 ├── include/        # Header files (*.h)
@@ -31,3 +32,4 @@ Austin is on a quest for retirement. To get there, he must walk through a series
 ├── GEMINI.md       # AI agent and project guidance
 ├── README.md       # Project overview and docs
 └── .gitignore      # Build artifact exclusion
+```
